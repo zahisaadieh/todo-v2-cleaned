@@ -1,0 +1,42 @@
+@font-face {
+  font-family: Alexander;
+  src: url("/public/fonts/Alexandria-Regular.ttf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: Alexander;
+  src: url("/public/fonts/Alexandria-Bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: Alexander;
+  src: url("/public/fonts/Alexandria-Black.ttf");
+  font-weight: 900;
+}
+@font-face {
+  font-family: Alexander;
+  src: url("/public/fonts/Alexandria-Light.ttf");
+  font-weight: 200;
+}
+
+.iconButton {
+  transition: all 0.5s !important;
+}
+.iconButton:hover {
+  background-color: #c5c5c5 !important;
+  box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.4);
+}
+
+.todoCard {
+  transition: all 0.5s !important;
+}
+
+.todoCard:hover {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.4);
+}
+
+body{
+    font-family: Alexander !important;
+}
