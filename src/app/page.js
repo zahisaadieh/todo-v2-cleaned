@@ -1,12 +1,13 @@
 "use client";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import { CssBaseline, Switch } from "@mui/material"; 
-import { green, red, blue } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, Switch } from "@mui/material";
+import { red } from "@mui/material/colors";
 import TodoList from "@/components/TodoList";
 import "./cssFile.css";
-import { v4 as uuidv4 } from "uuid";
-import { TodosContext } from "./context/todosContext";
 import { useState } from "react";
+import { ToastProvider } from "./context/toastContext";
+import TodosProvider from "./context/todosContext";
+
 export default function Home() {
   const [mode, setMode] = useState("light");
 
@@ -39,28 +40,18 @@ export default function Home() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <MyPage toggleTheme={toggleTheme} mode={mode} />
-    </ThemeProvider>
+    <TodosProvider>
+      <ToastProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <MyPage toggleTheme={toggleTheme} mode={mode} />
+        </ThemeProvider>
+      </ToastProvider>
+    </TodosProvider>
   );
 }
-const initialTodos = [
-  {
-    id: uuidv4(),
-    title: "غسل الصحون",
-    Details: "غسل الصحون بعد العشا",
-    isCompleted: false,
-  },
-  {
-    id: uuidv4(),
-    title: "الذهاب للسوبرماركت",
-    Details: "اشتري خبز، حليب، وبيض",
-    isCompleted: false,
-  },
-];
+
 function MyPage({ toggleTheme, mode }) {
-  const [todos, setTodos] = useState(initialTodos);
 
   return (
     <div
@@ -80,9 +71,7 @@ function MyPage({ toggleTheme, mode }) {
         checked={mode === "dark"}
         color="primary"
       />
-      <TodosContext.Provider value={{ todos, setTodos }}>
-        <TodoList />
-      </TodosContext.Provider>
+      <TodoList />
     </div>
   );
 }
